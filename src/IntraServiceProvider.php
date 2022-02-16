@@ -14,6 +14,7 @@ class IntraServiceProvider extends ServiceProvider
      */
     public function register()
     {
+		$this->registerFacades();
     }
 
     /**
@@ -55,6 +56,18 @@ class IntraServiceProvider extends ServiceProvider
         ], 'config');
     }
 
+	/**
+	 * [registerFacades description]
+	 *
+	 * @return  [type]  [return description]
+	 */
+	protected function registerFacades()
+	{
+		$this->app->bind('IntraAPI', function()
+		{
+			return new IntraAPI;
+		});
+	}
 
     /**
      * [base_dir description]

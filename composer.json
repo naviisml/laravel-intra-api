@@ -2,7 +2,7 @@
     "name": "naviisml/laravel-intra-api",
     "description": "Laravel Mojang Api",
     "license": "GNU AFFERO GENERAL PUBLIC LICENSE",
-    "version": "1.0.12",
+    "version": "1.1",
     "authors": [
         {
             "author": "Navi",
@@ -33,7 +33,10 @@
         "laravel": {
             "providers": [
                 "Naviisml\\IntraApi\\IntraServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "IntraAPI": "Naviisml\\IntraApi\\Facades\\IntraAPI"
+            }
         }
     }
 }
