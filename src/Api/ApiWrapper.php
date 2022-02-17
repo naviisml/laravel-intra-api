@@ -2,48 +2,48 @@
 
 namespace Naviisml\IntraApi\Api;
 
-class Wrapper
+class ApiWrapper
 {
 	/**
-	 * [$uri description]
+	 * The API url
 	 */
 	protected $uri = null;
 
 	/**
-	 * [$endpoint description]
+	 * The API endpoint
 	 */
 	protected $endpoint = null;
 
 	/**
-	 * [$client_id description]
+	 * The API's client id
 	 */
 	protected $client_id = null;
 
 	/**
-	 * [$client_secret description]
+	 * The API's client secret
 	 */
 	protected $client_secret = null;
 
 	/**
-	 * [$headers description]
+	 * The headers for the request
 	 */
 	protected $headers = [];
 
 	/**
-	 * [$arguments description]
+	 * The arguments for the request
 	 */
 	protected $arguments = [];
 
 	/**
-	 * [$response description]
+	 * The response from a API call
 	 */
 	protected $response;
 
 	/**
-	 * [headers description]
+	 * Add headers to the request
 	 *
 	 * @param   array  $headers
-	 * @return  IntraController
+	 * @return  ApiWrapper
 	 */
 	public function headers(array $headers)
 	{
@@ -53,10 +53,10 @@ class Wrapper
 	}
 
 	/**
-	 * [with description]
+	 * Add arguments to the API call
 	 *
 	 * @param   array  $args
-	 * @return  IntraController
+	 * @return  ApiWrapper
 	 */
 	public function with(array $args)
 	{
@@ -66,10 +66,10 @@ class Wrapper
 	}
 
 	/**
-	 * [get description]
+	 * Send a GET call to the endpoint
 	 *
 	 * @param   string  $endpoint
-	 * @return  IntraController
+	 * @return  \GuzzleHttp\Client $response
 	 */
 	public function get(string $endpoint = null)
 	{
@@ -86,10 +86,10 @@ class Wrapper
 	}
 
 	/**
-	 * [post description]
+	 * Send a POST call to the endpoint
 	 *
 	 * @param   string  $endpoint
-	 * @return  IntraController
+	 * @return  \GUzzleHttp\Client $response
 	 */
 	public function post(string $endpoint = null)
 	{
@@ -106,10 +106,10 @@ class Wrapper
 	}
 
 	/**
-	 * [setClientId description]
+	 * Set the client id for the API calls
 	 *
-	 * @param   string  $client_id  [$client_id description]
-	 * @return  [type]              [return description]
+	 * @param   string  $client_id
+	 * @return  ApiWrapper
 	 */
 	public function setClientId(string $client_id = null)
 	{
@@ -119,10 +119,10 @@ class Wrapper
 	}
 
 	/**
-	 * [setClientSecret description]
+	 * Set the client secret for the API calls
 	 *
-	 * @param   string  $client_secret  [$client_secret description]
-	 * @return  [type]                  [return description]
+	 * @param   string  $client_secret
+	 * @return  ApiWrapper
 	 */
 	public function setClientSecret(string $client_secret = null)
 	{
@@ -134,7 +134,7 @@ class Wrapper
 	/**
 	 * Return the API url
 	 *
-	 * @return  string
+	 * @return  string $this->uri
 	 */
 	public function getUrl()
 	{
@@ -145,7 +145,7 @@ class Wrapper
 	 * Set the api url
 	 *
 	 * @param   string $url
-	 * @return  IntraController
+	 * @return  ApiWrapper
 	 */
 	public function setUrl(string $url = null)
 	{
@@ -185,7 +185,7 @@ class Wrapper
 	 * Set the api endpoint
 	 *
 	 * @param   string  $endpoint
-	 * @return  IntraController
+	 * @return  ApiWrapper
 	 */
 	public function setEndpoint(string $endpoint = null)
 	{

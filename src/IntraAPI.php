@@ -2,9 +2,9 @@
 
 namespace Naviisml\IntraApi;
 
-use Naviisml\IntraApi\Api\Wrapper;
+use Naviisml\IntraApi\Api\ApiWrapper;
 
-class IntraAPI extends Wrapper
+class IntraAPI extends ApiWrapper
 {
 	/**
 	 * [__construct description]
