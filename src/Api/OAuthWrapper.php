@@ -74,7 +74,7 @@ class OAuthWrapper extends ApiWrapper
 	 */
 	public function getRedirectUri()
 	{
-		return request()->getSchemeAndHttpHost() . $this->redirectUrl;
+		return $this->getSchemeAndHttpHost() . $this->redirectUrl;
 	}
 
 	/**
@@ -158,5 +158,18 @@ class OAuthWrapper extends ApiWrapper
 		$this->expires_in = $this->response['expires_in'];
 
 		return $this;
+	}
+
+	/**
+	 * Return the current url and http scheme
+	 *
+	 * @return  $url
+	 */
+	protected function getSchemeAndHttpHost()
+	{
+		$hostname = $_SERVER['HTTP_HOST']; 
+		$protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5)) == 'https' ? 'https' : 'http';
+
+		return $protocol . '://' . $hostname;
 	}
 }
