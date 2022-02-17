@@ -53,6 +53,21 @@ class ApiWrapper
 	}
 
 	/**
+	 * Find the driver configuration
+	 *
+	 * @param   string  $provider
+	 * @return  ApiWrapper
+	 */
+	public function driver($provider)
+	{
+		$this->setUrl(config("services.{$provider}.url", null));
+		$this->setClientId(config("services.{$provider}.client_id", null));
+		$this->setClientSecret(config("services.{$provider}.client_secret", null));
+
+		return $this;
+	}
+
+	/**
 	 * Add arguments to the API call
 	 *
 	 * @param   array  $args
