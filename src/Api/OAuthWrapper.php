@@ -138,7 +138,7 @@ class OAuthWrapper extends ApiWrapper
 	 * @param   string  $code
 	 * @return  \GuzzleHttp\Client $response
 	 */
-	public function stateless(string $code)
+	public function stateless()
 	{
 		$this->setEndpoint($this->tokenUrl);
 
@@ -147,8 +147,7 @@ class OAuthWrapper extends ApiWrapper
 			'grant_type' => 'authorization_code',
 			'client_id' => $this->client_id,
 			'client_secret' => $this->client_secret,
-			'redirect_uri' => $this->getRedirectUri(),
-			'code' => $code
+			'redirect_uri' => $this->getRedirectUri()
 		]);
 		
 		$this->response = json_decode($this->post()->getBody(), true);
