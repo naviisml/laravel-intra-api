@@ -168,7 +168,11 @@ class OAuthWrapper extends ApiWrapper
 	protected function getSchemeAndHttpHost()
 	{
 		$hostname = $_SERVER['HTTP_HOST']; 
-		$protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5)) == 'https' ? 'https' : 'http';
+		
+		if (env('APP_FORCE_HTTPS') != true)
+			$protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https' ? 'https' : 'http';
+		else
+			$protocol = 'https';
 
 		return $protocol . '://' . $hostname;
 	}
