@@ -147,7 +147,8 @@ class OAuthWrapper extends ApiWrapper
 			'grant_type' => 'authorization_code',
 			'client_id' => $this->client_id,
 			'client_secret' => $this->client_secret,
-			'redirect_uri' => $this->getRedirectUri()
+			'redirect_uri' => $this->getRedirectUri(),
+			'code' => request()->get('code')
 		]);
 		
 		$this->response = json_decode($this->post()->getBody(), true);
