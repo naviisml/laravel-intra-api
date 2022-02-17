@@ -63,9 +63,12 @@ class IntraServiceProvider extends ServiceProvider
 	 */
 	protected function registerFacades()
 	{
-		$this->app->bind('IntraAPI', function()
-		{
+		$this->app->bind('IntraAPI', function() {
 			return new IntraAPI;
+		});
+
+		$this->app->bind('IntraOAuth', function() {
+			return new IntraOAuth;
 		});
 	}
 
