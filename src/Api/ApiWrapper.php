@@ -93,7 +93,7 @@ class ApiWrapper
 		$this->setEndpoint($endpoint);
 		$this->setEndpointArguments($this->arguments);
 
-        $this->response = $client->get($this->getEndpoint(), [
+        $this->response = $client->request('GET', $this->getEndpoint(), [
             'headers' => $this->headers,
         ]);
 		
@@ -111,9 +111,9 @@ class ApiWrapper
 		$client = new \GuzzleHttp\Client();
 
 		$this->setEndpoint($endpoint);
-		
-        $this->response = $client->post($this->getEndpoint(), [
-			...$this->arguments,
+
+        $this->response = $client->request('POST', $this->getEndpoint(), [
+			'json' => [...$this->arguments],
             'headers' => $this->headers,
         ]);
 		

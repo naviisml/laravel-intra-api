@@ -17,12 +17,23 @@ class OAuthWrapper extends ApiWrapper
 	/**
     * @var string[]
     */
+	protected $userUrl;
+
+	/**
+    * @var string[]
+    */
     protected $scopes;
 
     /**
     * @var string
     */
     protected $scopeSeparator;
+
+	protected $access_token;
+
+	protected $refresh_token;
+
+	protected $expires_in;
 
 	/**
 	 * Build and return the OAuth url
@@ -74,5 +85,78 @@ class OAuthWrapper extends ApiWrapper
 	public function getAuthUrl()
 	{
 		return $this->getUrl() . $this->authUrl;
+	}
+
+	/**
+	 * Map the user's data to a object
+	 *
+	 * @param   array  $user
+	 * @return  $user
+	 */
+	public function mapUserToObject(array $user)
+	{
+		return $user;
+	}
+
+	public function map(array $user)
+	{
+		$user['user'] = $this->response;
+		$user['token'] = $this->access_token;
+		$user['expiresIn'] = $this->expires_in;
+		$user['refreshToken'] = $this->refresh_token;
+
+		return $user;
+	}
+
+	/**
+	 * Get the user data
+	 *
+	 * @param   string  $access_token
+	 * @return  json $user
+	 */
+	public function user()
+	{
+		$this->setEndpoint($this->userUrl);
+
+		$this->with([
+			'client_id' => $this->client_id,
+			'client_secret' => $this->client_secret,
+		]);
+
+		$this->headers([
+			'Authorization' => 'Bearer ' . $this->access_token,
+		]);
+		
+		$this->response = json_decode($this->get()->getBody(), true);
+
+		return $this->mapUserToObject($this->response);
+	}
+	
+	/**
+	 * Get the access token from the code
+	 *
+	 * @param   string  $code
+	 * @return  \GuzzleHttp\Client $response
+	 */
+	public function stateless(string $code)
+	{
+		$this->setEndpoint($this->tokenUrl);
+
+		$this->with([
+			'response_type' => 'authorization_code',
+			'grant_type' => 'authorization_code',
+			'client_id' => $this->client_id,
+			'client_secret' => $this->client_secret,
+			'redirect_uri' => $this->getRedirectUri(),
+			'code' => $code
+		]);
+		
+		$this->response = json_decode($this->post()->getBody(), true);
+		
+		$this->access_token = $this->response['access_token'];
+		$this->refresh_token = $this->response['refresh_token'];
+		$this->expires_in = $this->response['expires_in'];
+
+		return $this;
 	}
 }
