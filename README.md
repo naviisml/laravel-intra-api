@@ -1,5 +1,10 @@
 # Laravel Intra API
 
+## Dependencies
+
+- PHP 8.1
+- Laravel 8.1
+
 ## Features
 
 - Authentication through Intra
