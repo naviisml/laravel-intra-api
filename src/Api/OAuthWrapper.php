@@ -152,7 +152,7 @@ class OAuthWrapper extends ApiWrapper
 	 * @param   string  $access_token
 	 * @return  \GuzzleHttp\Client $response
 	 */
-	public function userFromAccessToken($access_token = null)
+	public function token($access_token = null)
 	{
 		$this->setEndpoint($this->tokenUrl);
 
@@ -173,6 +173,40 @@ class OAuthWrapper extends ApiWrapper
 
 		return $this;
 	}
+	
+	/**
+	 * Send a GET call to the endpoint
+	 *
+	 * @param   string  $endpoint
+	 * @return  \GuzzleHttp\Client $response
+	 */
+	public function get(string $endpoint = null)
+	{
+		if ($this->access_token) {
+			$this->headers([
+				'Authorization' => 'Bearer ' . $this->access_token,
+			]);
+		}
+
+		return parent::get($endpoint);
+	}
+	
+	/**
+	 * Send a POST call to the endpoint
+	 *
+	 * @param   string  $endpoint
+	 * @return  \GuzzleHttp\Client $response
+	 */
+	public function post(string $endpoint = null)
+	{
+		if ($this->access_token) {
+			$this->headers([
+				'Authorization' => 'Bearer ' . $this->access_token,
+			]);
+		}
+
+		return parent::get($endpoint);
+	}
 
 	/**
 	 * Get the access token from the refresh token
@@ -180,7 +214,7 @@ class OAuthWrapper extends ApiWrapper
 	 * @param   string  $refresh_token
 	 * @return  \GuzzleHttp\Client $response
 	 */
-	public function userFromRefreshToken($refresh_token = null)
+	public function refreshToken($refresh_token = null)
 	{
 
 	}
