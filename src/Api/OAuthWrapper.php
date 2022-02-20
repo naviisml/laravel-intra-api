@@ -176,4 +176,16 @@ class OAuthWrapper extends ApiWrapper
 
 		return $protocol . '://' . $hostname;
 	}
+
+	/**
+	 * Set the user's access token
+	 *
+	 * @param   string  $access_token
+	 */
+	public function setAccessToken($access_token = null)
+	{
+		$this->access_token = $access_token;
+
+		return $this;
+	}
 }

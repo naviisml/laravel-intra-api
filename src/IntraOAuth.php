@@ -24,7 +24,7 @@ class IntraOAuth extends OAuthWrapper
 	/**
     * @var string[]
     */
-	protected $redirectUrl = '/api/v1/oauth/intra/callback';
+	protected $redirectUrl = '/api/v2/oauth/intra/callback';
 
 	/**
     * @var string[]
