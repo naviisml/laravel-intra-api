@@ -51,12 +51,16 @@ return [
 **Step 1. Authentication url**
 
 ```
+use Naviisml\IntraApi\Facades\IntraOAuth;
+
 IntraOAuth::driver('intra')->buildAuthUrl()
 ```
 
 **Step 2. Callback**
 
 ```
+use Naviisml\IntraApi\Facades\IntraOAuth;
+
 $response = IntraOAuth::driver('intra')->stateless(); // makes the token call
 $user = $response->user(); // returns the OAuth user
 ```
@@ -64,6 +68,8 @@ $user = $response->user(); // returns the OAuth user
 ### API Calls
 
 ```
+use Naviisml\IntraApi\Facades\IntraAPI;
+
 $headers = [
 	'Authorization' => 'Bearer ' . $access_token,
 ];
