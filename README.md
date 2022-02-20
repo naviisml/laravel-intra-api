@@ -66,7 +66,7 @@ IntraOAuth::driver('intra')->buildAuthUrl()
 ```
 use Naviisml\IntraApi\Facades\IntraOAuth;
 
-$response = IntraOAuth::driver('intra')->stateless(); // makes the token call
+$response = IntraOAuth::driver('intra')->userFromAccessToken(); // makes the token call
 $user = $response->user(); // returns the OAuth user
 ```
 

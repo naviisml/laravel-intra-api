@@ -14,6 +14,11 @@ class IntraOAuth extends OAuthWrapper
 	/**
     * @var string[]
     */
+	protected $refreshTokenUrl = '/oauth/token';
+
+	/**
+    * @var string[]
+    */
 	protected $tokenUrl = '/oauth/token';
 
 	/**

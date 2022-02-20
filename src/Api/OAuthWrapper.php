@@ -15,6 +15,11 @@ class OAuthWrapper extends ApiWrapper
 	protected $tokenUrl;
 
 	/**
+	 * The refresh token url
+	 */
+	protected $refreshTokenUrl;
+
+	/**
     * @var string[]
     */
 	protected $userUrl;
@@ -29,10 +34,19 @@ class OAuthWrapper extends ApiWrapper
     */
     protected $scopeSeparator;
 
+	/**
+    * @var string
+    */
 	protected $access_token;
 
+    /**
+    * @var string
+    */
 	protected $refresh_token;
 
+    /**
+    * @var string
+    */
 	protected $expires_in;
 
 	/**
@@ -135,10 +149,10 @@ class OAuthWrapper extends ApiWrapper
 	/**
 	 * Get the access token from the code
 	 *
-	 * @param   string  $code
+	 * @param   string  $access_token
 	 * @return  \GuzzleHttp\Client $response
 	 */
-	public function stateless()
+	public function userFromAccessToken($access_token = null)
 	{
 		$this->setEndpoint($this->tokenUrl);
 
@@ -158,6 +172,17 @@ class OAuthWrapper extends ApiWrapper
 		$this->expires_in = $this->response['expires_in'];
 
 		return $this;
+	}
+
+	/**
+	 * Get the access token from the refresh token
+	 *
+	 * @param   string  $refresh_token
+	 * @return  \GuzzleHttp\Client $response
+	 */
+	public function userFromRefreshToken($refresh_token = null)
+	{
+
 	}
 
 	/**
