@@ -1,6 +1,6 @@
 {
     "name": "naviisml/laravel-intra-api",
-    "description": "Laravel Mojang Api",
+    "description": "A Laravel package to interact with the 42 Intra api ",
     "license": "Apache-2.0",
     "version": "1.1.0",
     "authors": [
