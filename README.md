@@ -1,3 +1,74 @@
-# Laravel Package Boilerplate
+# Laravel Intra API
 
-Working on it...
+## Features
+
+- Authentication through Intra
+- API calls through Intra
+
+## Installation
+
+**Step 1. Install the package**
+
+```
+composer require naviisml/laravel-intra-api
+```
+
+**Step 2. Add ServiceProvider**
+
+in `config/app.php`
+```
+return [
+	// ...
+
+	'providers' => [
+        /*
+         * Package Service Providers...
+         */
+		Naviisml\IntraApi\IntraServiceProvider::class,
+	]
+];
+```
+
+**Step 3. Add services**
+
+in `config/services.php`
+```
+return [
+	// ...
+
+    'intra' => [
+		'url' => env('42_URL'), // The main API url
+        'client_id' => env('42_CLIENT_ID'), // The client_id
+        'client_secret' => env('42_CLIENT_SECRET'), // The client_secret
+    ],
+];
+```
+
+## Usage
+
+### OAuth 2.0
+
+**Step 1. Authentication url**
+
+```
+IntraOAuth::driver('intra')->buildAuthUrl()
+```
+
+**Step 2. Callback**
+
+```
+$response = IntraOAuth::driver('intra')->stateless(); // makes the token call
+$user = $response->user(); // returns the OAuth user
+```
+
+### API Calls
+
+```
+$headers = [
+	'Authorization' => 'Bearer ' . $access_token,
+];
+
+$response = IntraAPI::driver('intra')->setEndpoint("/v2/me/teams")->with(['page' => '1'])->headers($headers)->get();
+
+return $response->getBody();
+```
