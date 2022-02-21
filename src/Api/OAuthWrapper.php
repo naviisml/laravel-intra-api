@@ -205,7 +205,7 @@ class OAuthWrapper extends ApiWrapper
 			]);
 		}
 
-		return parent::get($endpoint);
+		return parent::post($endpoint);
 	}
 
 	/**
